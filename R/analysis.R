@@ -2855,7 +2855,7 @@ netAnalysis_signalingRole_heatmap <- function(object, signaling = NULL, pattern 
   if (is.null(color.use)) {
     color.use <- scPalette(length(colnames(mat)))
   }
-  color.heatmap.use = grDevices::colorRampPalette((RColorBrewer::brewer.pal(n = 9, name = color.heatmap)))
+  color.heatmap.use = grDevices::colorRampPalette((RColorBrewer::brewer.pal(n = 9, name = color.heatmap)))(110)
 
   df<- data.frame(group = colnames(mat)); rownames(df) <- colnames(mat)
   names(color.use) <- colnames(mat)
