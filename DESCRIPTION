@@ -20,7 +20,7 @@ Imports:
     svglite,
     Matrix,
     ggrepel, 
-    circlize (>= 0.4.12),
+    circlize (>= 0.4.14),
     RColorBrewer,
     cowplot,
     methods,

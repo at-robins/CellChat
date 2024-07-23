@@ -2800,7 +2800,7 @@ netAnalysis_signalingChanges_scatter <- function(object, idents.use, color.use =
 #' @param cluster.rows whether cluster rows
 #' @param cluster.cols whether cluster columns
 #' @importFrom methods slot
-#' @importFrom grDevices colorRampPalette
+#' @importFrom circlize colorRamp2
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom ComplexHeatmap Heatmap HeatmapAnnotation anno_barplot rowAnnotation
 #' @importFrom stats setNames
@@ -2855,7 +2855,7 @@ netAnalysis_signalingRole_heatmap <- function(object, signaling = NULL, pattern 
   if (is.null(color.use)) {
     color.use <- scPalette(length(colnames(mat)))
   }
-  color.heatmap.use = colorRamp2(c(0, 1),  hcl_palette = color.heatmap)
+  color.heatmap.use = circlize::colorRamp2(c(0, 1),  hcl_palette = color.heatmap)
 
   df<- data.frame(group = colnames(mat)); rownames(df) <- colnames(mat)
   names(color.use) <- colnames(mat)
