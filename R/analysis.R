@@ -354,8 +354,7 @@ selectK <- function(object, slot.name = "netP", pattern = c("outgoing","incoming
 #' @param font.size fontsize in heatmap
 #' @importFrom methods slot
 #' @importFrom NMF nmfEstimateRank nmf
-#' @importFrom grDevices colorRampPalette
-#' @importFrom RColorBrewer brewer.pal
+#' @importFrom circlize colorRamp2
 #' @importFrom ComplexHeatmap Heatmap HeatmapAnnotation draw
 #' @importFrom stats setNames
 #' @importFrom grid grid.grabExpr grid.newpage pushViewport grid.draw unit gpar viewport popViewport
@@ -395,7 +394,7 @@ identifyCommunicationPatterns <- function(object, slot.name = "netP", pattern = 
     if (is.null(color.use)) {
       color.use <- scPalette(length(rownames(net)))
     }
-    color.heatmap = grDevices::colorRampPalette(rev(RColorBrewer::brewer.pal(n = 9, name = color.heatmap)))(255)
+    color.heatmap = circlize::colorRamp2(c(min(net), max(net)),  hcl_palette = color.heatmap, reverse = TRUE)
 
     df<- data.frame(group = rownames(net)); rownames(df) <- rownames(net)
     cell.cols.assigned <- setNames(color.use, unique(as.character(df$group)))
@@ -2236,8 +2235,7 @@ subsetCommunication_internal <- function(net, LR, cells.level, slot.name = "net"
 #' @param cluster.rows whether cluster rows
 #' @param cluster.cols whether cluster columns
 #' @importFrom methods slot
-#' @importFrom grDevices colorRampPalette
-#' @importFrom RColorBrewer brewer.pal
+#' @importFrom circlize colorRamp2
 #' @importFrom ComplexHeatmap Heatmap HeatmapAnnotation draw
 #' @importFrom stats setNames
 #'
@@ -2271,7 +2269,7 @@ netAnalysis_signalingRole_network <- function(object, signaling, slot.name = "ne
     if (is.null(color.use)) {
       color.use <- scPalette(length(colnames(mat)))
     }
-    color.heatmap.use = grDevices::colorRampPalette((RColorBrewer::brewer.pal(n = 9, name = color.heatmap)))(100)
+    color.heatmap.use = circlize::colorRamp2(c(min(mat), max(mat)),  hcl_palette = color.heatmap)
 
     df<- data.frame(group = colnames(mat)); rownames(df) <- colnames(mat)
     cell.cols.assigned <- setNames(color.use, unique(as.character(df$group)))
@@ -2801,7 +2799,6 @@ netAnalysis_signalingChanges_scatter <- function(object, idents.use, color.use =
 #' @param cluster.cols whether cluster columns
 #' @importFrom methods slot
 #' @importFrom circlize colorRamp2
-#' @importFrom RColorBrewer brewer.pal
 #' @importFrom ComplexHeatmap Heatmap HeatmapAnnotation anno_barplot rowAnnotation
 #' @importFrom stats setNames
 #'
@@ -2855,7 +2852,7 @@ netAnalysis_signalingRole_heatmap <- function(object, signaling = NULL, pattern 
   if (is.null(color.use)) {
     color.use <- scPalette(length(colnames(mat)))
   }
-  color.heatmap.use = circlize::colorRamp2(c(0, 1),  hcl_palette = color.heatmap)
+  color.heatmap.use = circlize::colorRamp2(c(min(mat), max(mat)),  hcl_palette = color.heatmap)
 
   df<- data.frame(group = colnames(mat)); rownames(df) <- colnames(mat)
   names(color.use) <- colnames(mat)
