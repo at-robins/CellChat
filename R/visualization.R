@@ -1949,7 +1949,7 @@ netVisual_heatmap <- function(object, comparison = c(1,2), measure = c("count", 
     } else if (length(color.heatmap) == 2) {
       color.heatmap.use = colorRamp3(c(min(mat), max(mat)), color.heatmap)
     } else if (length(color.heatmap) == 1) {
-      color.heatmap.use = circlize::colorRamp2(c(min(mat), max(mat)),  hcl_palette = color.heatmap)
+      color.heatmap.use = circlize::colorRamp2(c(max(mat, na.rm = TRUE), min(mat, na.rm = TRUE)),  hcl_palette = color.heatmap)
     }
     colorbar.break <- c(round(min(mat, na.rm = T), digits = nchar(sub(".*\\.(0*).*","\\1",min(mat, na.rm = T)))+1), round(max(mat, na.rm = T), digits = nchar(sub(".*\\.(0*).*","\\1",max(mat, na.rm = T)))+1))
   }
