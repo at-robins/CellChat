@@ -394,7 +394,7 @@ identifyCommunicationPatterns <- function(object, slot.name = "netP", pattern = 
     if (is.null(color.use)) {
       color.use <- scPalette(length(rownames(net)))
     }
-    color.heatmap = circlize::colorRamp2(c(1, 0),  hcl_palette = color.heatmap, reverse = TRUE)
+    color.heatmap = circlize::colorRamp2(c(0.0, 1.0),  hcl_palette = color.heatmap, reverse = TRUE)
 
     df<- data.frame(group = rownames(net)); rownames(df) <- rownames(net)
     cell.cols.assigned <- setNames(color.use, unique(as.character(df$group)))
@@ -2269,7 +2269,7 @@ netAnalysis_signalingRole_network <- function(object, signaling, slot.name = "ne
     if (is.null(color.use)) {
       color.use <- scPalette(length(colnames(mat)))
     }
-    color.heatmap.use = circlize::colorRamp2(c(1, 0),  hcl_palette = color.heatmap)
+    color.heatmap.use = circlize::colorRamp2(c(0.0, 1.0),  hcl_palette = color.heatmap)
 
     df<- data.frame(group = colnames(mat)); rownames(df) <- colnames(mat)
     cell.cols.assigned <- setNames(color.use, unique(as.character(df$group)))
@@ -2852,7 +2852,7 @@ netAnalysis_signalingRole_heatmap <- function(object, signaling = NULL, pattern 
   if (is.null(color.use)) {
     color.use <- scPalette(length(colnames(mat)))
   }
-  color.heatmap.use = circlize::colorRamp2(c(1, 0),  hcl_palette = color.heatmap)
+  color.heatmap.use = circlize::colorRamp2(c(0.0, 1.0),  hcl_palette = color.heatmap)
 
   df<- data.frame(group = colnames(mat)); rownames(df) <- colnames(mat)
   names(color.use) <- colnames(mat)
